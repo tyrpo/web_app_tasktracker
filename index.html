@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>TaskTracker WebApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <div class="logo">TaskTracker</div>
+        <div class="header-actions">
+          <button id="add-task-btn" class="btn btn-primary">Новая задача</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <span class="sidebar-title">Команды</span>
+            <button class="icon-btn" id="add-team-btn">+</button>
+          </div>
+          <div class="empty-state" style="margin: 0 0 8px 0">
+            Подсказки:
+            <br />- <b>+</b> создаёт команду
+            <br />- <b>ПКМ</b> по <b>+</b> — вход в команду по ключу
+            <br />- уведомления о задачах/дедлайнах приходят в Telegram сообщениями от бота
+          </div>
+          <ul id="teams-list" class="list"></ul>
+        </aside>
+
+        <section class="content">
+          <div class="content-header">
+            <div class="content-title">
+              <h1 id="current-team-name">Мои задачи</h1>
+              <div class="content-actions">
+                <button id="team-key-btn" class="btn">Ключ</button>
+                <button id="team-members-btn" class="btn">Участники</button>
+              </div>
+            </div>
+          </div>
+          <div id="tasks-empty" class="empty-state">Задач пока нет. Добавьте первую.</div>
+          <ul id="tasks-list" class="tasks-list"></ul>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop hidden" id="modal-backdrop">
+      <div class="modal">
+        <h2 id="modal-title"></h2>
+        <form id="modal-form">
+          <div class="form-group">
+            <label for="modal-title-input">Название</label>
+            <input id="modal-title-input" required />
+          </div>
+          <div class="form-group" id="assignee-group">
+            <label for="modal-assignee-select">Исполнитель</label>
+            <select id="modal-assignee-select"></select>
+          </div>
+          <div class="form-group">
+            <label for="modal-deadline-input">Дедлайн</label>
+            <input id="modal-deadline-input" type="datetime-local" />
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn" id="modal-cancel">Отмена</button>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal-backdrop hidden" id="team-modal-backdrop">
+      <div class="modal">
+        <h2 id="team-modal-title">Команда</h2>
+        <div id="team-modal-body"></div>
+        <div class="modal-actions">
+          <button type="button" class="btn" id="team-modal-close">Закрыть</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="./config.js"></script>
+    <script src="./main.js"></script>
+  </body>
+  </html>
+
